@@ -41,7 +41,7 @@ public class CarController {
 	}
 	
 	private String[][] buildTableData(List<Car> cars) {
-		String[][] data = new String[100][100];
+		String[][] data = new String[cars.size()][2];
 		int index = 0;
 		for (Car car : cars) {
 			data[index][0] = car.getChassi();
