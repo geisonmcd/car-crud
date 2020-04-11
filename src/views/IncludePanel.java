@@ -60,7 +60,7 @@ public class IncludePanel extends JPanel {
 		add(lblChassi);
 		
 		txtChassi = new JTextField();
-		txtChassi.setText("01982734091872430879");
+		txtChassi.setText("0198230879");
 		txtChassi.setBounds(213, 87, 114, 19);
 		add(txtChassi);
 		txtChassi.setColumns(10);

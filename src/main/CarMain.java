@@ -7,7 +7,6 @@ public class CarMain {
 
 	public static void main(String[] args) {
 		CarController mainWindow = new CarController();
-		new CarService().read();
 	}
 
 }

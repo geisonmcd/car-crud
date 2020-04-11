@@ -9,24 +9,26 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame {
+public class MainWindow extends JFrame {
 	
-	public JMenuItem mntmIncluir;
+	public JMenuItem includeMenuItem;
+	public JMenuItem phyisicalListMenuItem;
+	public JMenu carMenu;
+	public JMenuBar menuBar; 
 
-	public MainFrame() {
+	public MainWindow() {
 		super("Carros");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(new Dimension(600, 600));
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
+		carMenu = new JMenu("Carros");
+		includeMenuItem = new JMenuItem("Incluir");
+		phyisicalListMenuItem = new JMenuItem("Listar (Físico)");
 		getContentPane().add(menuBar, BorderLayout.NORTH);
-		
-		JMenu mnCarros = new JMenu("Carros");
-		menuBar.add(mnCarros);
-		
-		mntmIncluir = new JMenuItem("Incluir");
-		mnCarros.add(mntmIncluir);
-
+		menuBar.add(carMenu);
+		carMenu.add(includeMenuItem);
+		carMenu.add(phyisicalListMenuItem);
 	}
 }
