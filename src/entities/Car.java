@@ -7,7 +7,15 @@ public class Car {
 	private String model;
 	private int year;
 	private double price;
+	
+	public Car() {}
 
+	public Car(String chassi) {
+		this.chassi = chassi;
+//		this.brand = "";
+//		this.model = "";
+	}
+	
 	public Car(String chassi, String brand, String model, int year, double price) {
 		this.chassi = chassi;
 		this.brand = brand;
@@ -82,10 +90,14 @@ public class Car {
 	public String getYearAsString() {
 		return Integer.toString(this.getYear());
 	}
+	
+	public String getPriceAsString() {
+		return Double.toString(this.getPrice());
+	}
 
 	@Override
 	public String toString() {
-		return chassi  + "," + model + "," + brand + "," + year
+		return chassi  + "," + brand + "," + model+ "," + year
 				+ "," + price;
 	}
 

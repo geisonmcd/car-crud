@@ -10,7 +10,7 @@ import javax.swing.JTable;
 public class PhysicalListPanel extends JPanel {
 	
 	private JTable table;
-	String[] tableColumns = {"Chassi", "Year"};
+	public String[] tableColumns = {"Chassi", "Marca", "Modelo", "Ano", "Preco"};
 	
 	public PhysicalListPanel(String[][] tableData) {
 		setLayout(null);

@@ -15,6 +15,14 @@ public class CarService {
 	public void save(Car car) {
 		fileManager.saveCar(car);
 	}
+	
+	public void update(Car car) {
+		fileManager.updateCar(car);
+	}
+	
+	public List<Car> find(String text) {
+		return fileManager.findCarsByChassiOrModel(text);
+	}
 
 	public List<Car> list() {
 		return fileManager.list();

@@ -13,6 +13,7 @@ public class MainWindow extends JFrame {
 	
 	public JMenuItem includeMenuItem;
 	public JMenuItem phyisicalListMenuItem;
+	public JMenuItem findMenuItem;
 	public JMenu carMenu;
 	public JMenuBar menuBar; 
 
@@ -26,9 +27,11 @@ public class MainWindow extends JFrame {
 		carMenu = new JMenu("Carros");
 		includeMenuItem = new JMenuItem("Incluir");
 		phyisicalListMenuItem = new JMenuItem("Listar (Físico)");
+		findMenuItem = new JMenuItem("Consultar");
 		getContentPane().add(menuBar, BorderLayout.NORTH);
 		menuBar.add(carMenu);
 		carMenu.add(includeMenuItem);
 		carMenu.add(phyisicalListMenuItem);
+		carMenu.add(findMenuItem);
 	}
 }
