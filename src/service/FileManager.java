@@ -19,6 +19,9 @@ public class FileManager {
 	static final int PRICE_FIELD_SIZE = 8;
 	static final int REGISTER_SIZE = CHASSI_FIELD_SIZE + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE
 			+ PRICE_FIELD_SIZE;
+	static final int CHASSI_STRING_SIZE = CHASSI_FIELD_SIZE / 2;
+	static final int BRAND_STRING_SIZE = BRAND_FIELD_SIZE / 2;
+	static final int MODEL_STRING_SIZE = MODEL_FIELD_SIZE / 2;
 
 	public void saveCar(Car car) {
 		openFile();
@@ -34,18 +37,26 @@ public class FileManager {
 
 	private void update(Car car) {
 		try {
-			raf.seek(0);
-			int registerIndex = 1;
+			int registerIndex = 0;
 			while (raf.getFilePointer() < raf.length()) {
-				String chassi = this.readString(12);
+				raf.seek(registerIndex * REGISTER_SIZE);
+				String chassi = this.readString(CHASSI_STRING_SIZE);
 				if (car.getChassi().equals(chassi)) {
 					if (car.getBrand() != null) {
-						
+						this.writeString(car.getBrand(), BRAND_STRING_SIZE);
+//						raf.seek(raf.getFilePointer() + CHASSI_FIELD_SIZE);
+					} else if (car.getModel() != null) {
+						raf.seek(raf.getFilePointer() + BRAND_FIELD_SIZE);
+						this.writeString(car.getModel(), MODEL_STRING_SIZE);
+					} else if (car.getYear() != null) {
+						raf.seek(raf.getFilePointer() + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE);
+						raf.writeInt(car.getYear());
+					} else if(car.getPrice() != null) {
+						raf.seek(raf.getFilePointer() + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE);
+						raf.writeDouble(car.getPrice());
 					}
 					break;
-				} else {
-					raf.seek(REGISTER_SIZE * registerIndex);
-				}
+				} 
 				registerIndex++;
 			}
 		} catch (IOException e) {
@@ -60,9 +71,9 @@ public class FileManager {
 		try {
 			raf.seek(0);
 			while (raf.getFilePointer() < raf.length()) {
-				String chassi = this.readString(12);
-				String brand = this.readString(12);
-				String model = this.readString(12);
+				String chassi = this.readString(CHASSI_STRING_SIZE);
+				String brand = this.readString(BRAND_STRING_SIZE);
+				String model = this.readString(MODEL_STRING_SIZE);
 				int year = raf.readInt();
 				double price = raf.readDouble();
 				if (chassi.contains(text) || model.contains(text)) {
@@ -79,9 +90,9 @@ public class FileManager {
 	private void add(Car car) {
 		try {
 			this.raf.seek(this.raf.length());
-			this.writeString(car.getChassi(), 12);
-			this.writeString(car.getBrand(), 12);
-			this.writeString(car.getModel(), 12);
+			this.writeString(car.getChassi(), CHASSI_STRING_SIZE);
+			this.writeString(car.getBrand(), BRAND_STRING_SIZE);
+			this.writeString(car.getModel(), MODEL_STRING_SIZE);
 			this.raf.writeInt(car.getYear());
 			this.raf.writeDouble(car.getPrice());
 		} catch (IOException e) {
@@ -133,9 +144,9 @@ public class FileManager {
 		try {
 			raf.seek(0);
 			while (raf.getFilePointer() < raf.length()) {
-				String chassi = this.readString(12);
-				String brand = this.readString(12);
-				String model = this.readString(12);
+				String chassi = this.readString(CHASSI_STRING_SIZE);
+				String brand = this.readString(BRAND_STRING_SIZE);
+				String model = this.readString(MODEL_STRING_SIZE);
 				int year = raf.readInt();
 				double price = raf.readDouble();
 				cars.add(new Car(chassi, brand, model, year, price));

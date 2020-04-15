@@ -50,7 +50,7 @@ public class IncludePanel extends JPanel {
 		add(lblPreco);
 		
 		txtPreco = new JTextField();
-		txtPreco.setText("32554.89");
+		txtPreco.setText("1.99");
 		txtPreco.setBounds(12, 263, 114, 19);
 		add(txtPreco);
 		txtPreco.setColumns(10);
@@ -70,7 +70,6 @@ public class IncludePanel extends JPanel {
 		add(lblModelo);
 		
 		txtModelo = new JTextField();
-		txtModelo.setText("Jetta");
 		txtModelo.setBounds(213, 155, 114, 19);
 		add(txtModelo);
 		txtModelo.setColumns(10);
@@ -78,5 +77,6 @@ public class IncludePanel extends JPanel {
 		btnIncluir = new JButton("Incluir");
 		btnIncluir.setBounds(447, 461, 117, 25);
 		add(btnIncluir);
+		txtModelo.setText("Jetta");
 	}
 }

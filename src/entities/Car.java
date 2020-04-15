@@ -5,8 +5,8 @@ public class Car {
 	private String chassi;
 	private String brand;
 	private String model;
-	private int year;
-	private double price;
+	private Integer year;
+	private Double price;
 	
 	public Car() {}
 
@@ -65,7 +65,7 @@ public class Car {
 
 
 
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
@@ -77,7 +77,7 @@ public class Car {
 
 
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 import javax.swing.event.TableModelEvent;
@@ -29,22 +30,22 @@ public class CarController {
 	public CarController() {
 		mainWindow = new MainWindow();
 		mainWindow.setVisible(true);
-		mainWindow.includeMenuItem.addActionListener(e -> showIncludePanel());
-		mainWindow.phyisicalListMenuItem.addActionListener(e -> showPhysicalListPanel());
-		mainWindow.findMenuItem.addActionListener(e -> showFindPanel());
+		mainWindow.includeMenuItem.addActionListener(e -> showIncludePanel(e));
+		mainWindow.phyisicalListMenuItem.addActionListener(e -> showPhysicalListPanel(e));
+		mainWindow.findMenuItem.addActionListener(e -> showFindPanel(e));
 		carService = new CarService();
 	}
 
-	private void showIncludePanel() {
+	private void showIncludePanel(ActionEvent e) {
 		includePanel = new IncludePanel();
-		includePanel.btnIncluir.addActionListener(e -> insertCar());
+		includePanel.btnIncluir.addActionListener(e2 -> insertCar());
 		mainWindow.getContentPane().add(includePanel);
 		mainWindow.setVisible(true);
 		hideOtherPanels("includePanel");
 		includePanel.setVisible(true);
 	}
 
-	void showPhysicalListPanel() {
+	void showPhysicalListPanel(ActionEvent e) {
 		List<Car> cars = carService.list();
 		physicalListPanel = new PhysicalListPanel(this.buildTableData(cars));
 		mainWindow.getContentPane().add(physicalListPanel);
@@ -53,10 +54,10 @@ public class CarController {
 		physicalListPanel.setVisible(true);
 	}
 
-	void showFindPanel() {
+	void showFindPanel(ActionEvent e) {
 		findPanel = new FindPanel();
-		findPanel.findButton.addActionListener(e -> findRegister(findPanel.txtFind.getText()));
-		findPanel.tableModel.addTableModelListener(e -> tableChanged(e));
+		findPanel.findButton.addActionListener(e2 -> findRegister(findPanel.txtFind.getText()));
+		findPanel.tableModel.addTableModelListener(e2 -> tableChanged(e2));
 		mainWindow.getContentPane().add(findPanel);
 		mainWindow.setVisible(true);
 		hideOtherPanels("findPanel");
@@ -87,10 +88,10 @@ public class CarController {
 			car.setModel((String) data);
 			break;
 		case YEAR_COLUMN_POSITION:
-			car.setYear((int) data);
+			car.setYear(Integer.valueOf((String)data));
 			break;
 		case PRICE_COLUMN_POSITION:
-			car.setPrice((double) data);
+			car.setPrice(Double.valueOf((String) data));
 			break;
 		default:
 			return;
@@ -123,12 +124,15 @@ public class CarController {
 	}
 
 	private void hideOtherPanels(String panel) {
-		if (physicalListPanel != null && !panel.equals("physicalListPanel"))
-			physicalListPanel.setVisible(false);
-		if (includePanel != null && !panel.equals("includePanel"))
-			includePanel.setVisible(false);
-		if (findPanel != null && !panel.equals("findPanel"))
-			findPanel.setVisible(false);
+		if (physicalListPanel != null && !panel.equals("physicalListPanel")) {
+			physicalListPanel.setVisible(false);	
+		}
+		if (includePanel != null && !panel.equals("includePanel")) {
+			includePanel.setVisible(false);			
+		}
+		if (findPanel != null && !panel.equals("findPanel")) {
+			findPanel.setVisible(false);			
+		}
 	}
 
 }
