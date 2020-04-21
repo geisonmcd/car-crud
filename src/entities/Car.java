@@ -7,6 +7,7 @@ public class Car {
 	private String model;
 	private Integer year;
 	private Double price;
+	private Integer deleted;
 	
 	public Car() {}
 
@@ -22,6 +23,16 @@ public class Car {
 		this.model = model;
 		this.year = year;
 		this.price = price;
+		this.deleted = 0;
+	}
+	
+	public Car(String chassi, String brand, String model, int year, double price, int deleted) {
+		this.chassi = chassi;
+		this.brand = brand;
+		this.model = model;
+		this.year = year;
+		this.price = price;
+		this.deleted = deleted;
 	}
 	
 	public Car(String chassi, int year) {
@@ -32,8 +43,6 @@ public class Car {
 	public String getChassi() {
 		return chassi;
 	}
-
-
 
 	public void setChassi(String chassi) {
 		this.chassi = chassi;
@@ -94,6 +103,27 @@ public class Car {
 	public String getPriceAsString() {
 		return Double.toString(this.getPrice());
 	}
+	
+	public Integer getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	
+	public String getDeletedAsString() {
+		return this.deleted == 1 ? "Sim" : "Não";
+	}
+
 
 	@Override
 	public String toString() {

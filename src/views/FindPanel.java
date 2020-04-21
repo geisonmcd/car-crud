@@ -16,7 +16,7 @@ public class FindPanel extends JPanel {
 	public JTextField txtFind;
 	public JButton findButton;
 	public JTable table;
-	public String[] tableColumns = {"Chassi", "Marca", "Modelo", "Ano", "Preco"};
+	public String[] tableColumns = {"Chassi", "Marca", "Modelo", "Ano", "Preco", "Delete"};
 	public DefaultTableModel tableModel;
 	
 	public FindPanel() {

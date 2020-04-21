@@ -3,6 +3,7 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
+import javax.swing.JCheckBox;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.TableModel;
 
@@ -20,7 +21,7 @@ public class CarController {
 	PhysicalListPanel physicalListPanel;
 	FindPanel findPanel;
 	CarService carService;
-	private static final int NUMBER_OF_COLUMNS = 5;
+	private static final int NUMBER_OF_COLUMNS = 6;
 	private static final int CHASSI_COLUMN_POSITION = 0;
 	private static final int BRAND_COLUMN_POSITION = 1;
 	private static final int MODEL_COLUMN_POSITION = 2;
@@ -66,7 +67,10 @@ public class CarController {
 
 	void findRegister(String text) {
 		List<Car> cars = carService.find(text);
-		findPanel.tableModel.setDataVector(buildTableData(cars), findPanel.tableColumns);
+		String[] tableColumns = {"Chassi", "Marca", "Modelo", "Ano", "Preco", "Delete"};
+		findPanel.tableModel.setDataVector(buildTableDataWithButton(cars), tableColumns);
+		findPanel.table.getColumn("Delete").setCellRenderer(new ButtonRenderer());
+	    findPanel.table.getColumn("Delete").setCellEditor(new ButtonEditor(new JCheckBox()));
 	}
 
 	void tableChanged(TableModelEvent e) {
@@ -108,6 +112,22 @@ public class CarController {
 			data[index][2] = car.getModel();
 			data[index][3] = car.getYearAsString();
 			data[index][4] = car.getPriceAsString();
+			data[index][5] = car.getDeletedAsString();
+			index++;
+		}
+		return data;
+	}
+	
+	private String[][] buildTableDataWithButton(List<Car> cars) {
+		String[][] data = new String[cars.size()][6];
+		int index = 0;
+		for (Car car : cars) {
+			data[index][0] = car.getChassi();
+			data[index][1] = car.getBrand();
+			data[index][2] = car.getModel();
+			data[index][3] = car.getYearAsString();
+			data[index][4] = car.getPriceAsString();
+			data[index][5] = "Delete " + car.getChassi();
 			index++;
 		}
 		return data;
@@ -119,7 +139,7 @@ public class CarController {
 		String model = includePanel.txtModelo.getText();
 		String price = includePanel.txtPreco.getText();
 		String year = includePanel.txtAno.getText();
-		Car newCar = new Car(chassi, brand, model, Integer.valueOf(year), Double.valueOf(price));
+		Car newCar = new Car(chassi, brand, model, Integer.valueOf(year), Double.valueOf(price) );
 		carService.save(newCar);
 	}
 

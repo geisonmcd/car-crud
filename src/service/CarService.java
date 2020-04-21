@@ -20,6 +20,10 @@ public class CarService {
 		fileManager.updateCar(car);
 	}
 	
+	public void delete(Car car) {
+		fileManager.deleteCar(car);
+	}
+	
 	public List<Car> find(String text) {
 		return fileManager.findCarsByChassiOrModel(text);
 	}
