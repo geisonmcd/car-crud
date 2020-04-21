@@ -1,4 +1,4 @@
-package controllers;
+package button;
 
 import java.awt.Component;
 

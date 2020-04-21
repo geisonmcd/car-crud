@@ -144,7 +144,7 @@ public class FileManager {
 		}
 	}
 
-	public List<Car> list() {
+	public List<Car> list(boolean showDeleted) {
 		openFile();
 		List<Car> cars = new ArrayList<Car>();
 		try {
@@ -156,7 +156,9 @@ public class FileManager {
 				int year = raf.readInt();
 				double price = raf.readDouble();
 				int deleted = raf.readInt();
-				cars.add(new Car(chassi, brand, model, year, price, deleted));
+				if (deleted == NOT_DELETED || (deleted == DELETED && showDeleted)) {
+					cars.add(new Car(chassi, brand, model, year, price, deleted));
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -28,8 +28,8 @@ public class CarService {
 		return fileManager.findCarsByChassiOrModel(text);
 	}
 
-	public List<Car> list() {
-		return fileManager.list();
+	public List<Car> list(boolean showDeleted) {
+		return fileManager.list(showDeleted);
 	}
 	
 }
