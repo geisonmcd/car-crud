@@ -11,7 +11,7 @@ import button.ButtonEditor;
 import button.ButtonRenderer;
 import entities.Car;
 import views.FindPanel;
-import views.PhysicalListPanel;
+import views.ListPanel;
 
 public class FindPanelController extends PanelController{
 	

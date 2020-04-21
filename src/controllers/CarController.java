@@ -39,7 +39,7 @@ public class CarController {
 	
 	void showLogicalListPanel() {
 		logicalListPanelController = new LogicalListPanelController();
-		parentPanel.add(logicalListPanelController.logicalListPanel, "logicalListPanel");
+		parentPanel.add(logicalListPanelController.listPanel, "logicalListPanel");
 		cardLayout.show(parentPanel, "logicalListPanel");
 	}
 
