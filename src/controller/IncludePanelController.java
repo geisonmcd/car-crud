@@ -19,9 +19,13 @@ public class IncludePanelController extends PanelController{
 		String chassi = includePanel.txtChassi.getText();
 		String brand = includePanel.txtMarca.getText();
 		String model = includePanel.txtModelo.getText();
-		String price = includePanel.txtPreco.getText();
-		String year = includePanel.txtAno.getText();
-		Car newCar = new Car(chassi, brand, model, Integer.valueOf(year), Double.valueOf(price));
+		Integer year = includePanel.txtAno.getText().equals("") ? 0 : Integer.valueOf(includePanel.txtAno.getText());
+		Double price = includePanel.txtPreco.getText().equals("") ? 0 : Double.valueOf(includePanel.txtPreco.getText());
+		if (chassi.equals("") || model.equals("")) {
+			JOptionPane.showMessageDialog(null, "Chassi e modelo são obrigatórios");
+			return;
+		}
+		Car newCar = new Car(chassi, brand, model, year, price);
 		try {
 			carService.save(newCar);
 			JOptionPane.showMessageDialog(null, "Carro inserido com sucesso");

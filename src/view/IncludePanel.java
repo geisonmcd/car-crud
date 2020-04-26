@@ -54,6 +54,7 @@ public class IncludePanel extends JPanel {
 		txtPreco.setBounds(247, 305, 217, 19);
 		add(txtPreco);
 		txtPreco.setColumns(10);
+//		txtPreco.setInputVerifier(new MyNumericVerifier());
 		
 		JLabel lblChassi = new JLabel("Chassi");
 		lblChassi.setBounds(12, 99, 70, 15);

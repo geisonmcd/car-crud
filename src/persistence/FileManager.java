@@ -39,8 +39,16 @@ public class FileManager {
 			this.writeString(car.getChassi(), CHASSI_STRING_SIZE);
 			this.writeString(car.getBrand(), BRAND_STRING_SIZE);
 			this.writeString(car.getModel(), MODEL_STRING_SIZE);
-			this.raf.writeInt(car.getYear());
-			this.raf.writeDouble(car.getPrice());
+			if (car.getYear() == null) {
+				this.raf.write(0);
+			} else {
+				this.raf.writeInt(car.getYear());
+			}
+			if (car.getPrice() == null) {
+				this.raf.writeDouble(0);
+			} else {
+				this.raf.writeDouble(car.getPrice());				
+			}
 			this.raf.writeInt(NOT_DELETED);
 		} catch (IOException e) {
 			e.printStackTrace();
