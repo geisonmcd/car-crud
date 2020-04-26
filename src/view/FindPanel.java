@@ -23,7 +23,7 @@ public class FindPanel extends JPanel {
 	
 	public FindPanel() {
 		setLayout(null);
-		this.setSize(new Dimension(600, 600));
+//		this.setSize(new Dimension(600, 600));
 		
 		JLabel lblIncludepanel = new JLabel("BUSCAR", SwingConstants.CENTER);
 		lblIncludepanel.setFont(new Font("Dialog", Font.BOLD, 18));

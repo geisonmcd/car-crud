@@ -219,8 +219,7 @@ public class FileManager {
 		return properties;
 	}
 
-	public void clearFile() {
-		File fileName = new File(FILE_NAME);
-		fileName.delete();
+	public void deleteFile() {
+		new File(FILE_NAME).delete();
 	}
 }

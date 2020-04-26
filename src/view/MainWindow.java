@@ -23,6 +23,7 @@ public class MainWindow extends JFrame {
 	public MainWindow() {
 		super("Carros");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 		this.setSize(new Dimension(600, 600));
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

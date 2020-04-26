@@ -43,8 +43,11 @@ public class CarService {
 		return fileManager.getProperties();
 	}
 
+	/**
+	 * Exclui/limpa o arquivo
+	 */
 	public void clearFile() {
-		fileManager.clearFile();
+		fileManager.deleteFile();
 	}
 	
 }
