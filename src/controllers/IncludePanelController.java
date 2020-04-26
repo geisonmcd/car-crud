@@ -1,8 +1,11 @@
 package controllers;
 
+import java.awt.TrayIcon.MessageType;
+
 import javax.swing.JOptionPane;
 
 import entities.Car;
+import service.CarAlreadyExistsException;
 import views.IncludePanel;
 
 public class IncludePanelController extends PanelController{
@@ -25,6 +28,8 @@ public class IncludePanelController extends PanelController{
 			carService.save(newCar);
 			JOptionPane.showMessageDialog(null, "Carro inserido com sucesso");
 			clearFields();
+		} catch (CarAlreadyExistsException caee) {
+			JOptionPane.showMessageDialog(null, caee.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

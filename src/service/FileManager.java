@@ -19,7 +19,8 @@ public class FileManager {
 	static final int YEAR_FIELD_SIZE = 4;
 	static final int PRICE_FIELD_SIZE = 8;
 	static final int DELETED_FIELD_SIZE = 4;
-	static final int REGISTER_SIZE = CHASSI_FIELD_SIZE + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE + PRICE_FIELD_SIZE + DELETED_FIELD_SIZE;
+	static final int REGISTER_SIZE = CHASSI_FIELD_SIZE + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE
+			+ PRICE_FIELD_SIZE + DELETED_FIELD_SIZE;
 	static final int CHASSI_STRING_SIZE = CHASSI_FIELD_SIZE / 2;
 	static final int BRAND_STRING_SIZE = BRAND_FIELD_SIZE / 2;
 	static final int MODEL_STRING_SIZE = MODEL_FIELD_SIZE / 2;
@@ -28,6 +29,10 @@ public class FileManager {
 
 	public void saveCar(Car car) throws Exception {
 		openFile();
+		if (doesChassiExist(car.getChassi())) {
+			closeFile();
+			throw new CarAlreadyExistsException();
+		}
 		try {
 			this.raf.seek(this.raf.length());
 			this.writeString(car.getChassi(), CHASSI_STRING_SIZE);
@@ -40,8 +45,28 @@ public class FileManager {
 			e.printStackTrace();
 			throw new Exception("Erro ao salvar o carro");
 		} finally {
-			closeFile();			
+			closeFile();
 		}
+	}
+
+	private boolean doesChassiExist(String chassi) {
+		try {
+			raf.seek(0);
+			int registerIndex = 1;
+			while (raf.getFilePointer() < raf.length()) {
+				String fileChassi = this.readString(CHASSI_STRING_SIZE);
+				System.out.println(fileChassi);
+				System.out.println(chassi);
+				if (chassi.equals(fileChassi.trim())) {
+					return true;
+				}
+				raf.seek(registerIndex * REGISTER_SIZE);
+				registerIndex++;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public void deleteCar(Car car) {
@@ -64,11 +89,12 @@ public class FileManager {
 					} else if (car.getYear() != null) {
 						raf.seek(raf.getFilePointer() + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE);
 						raf.writeInt(car.getYear());
-					} else if(car.getPrice() != null) {
+					} else if (car.getPrice() != null) {
 						raf.seek(raf.getFilePointer() + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE);
 						raf.writeDouble(car.getPrice());
 					} else if (car.getDeleted() != null) {
-						raf.seek(raf.getFilePointer() + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE + PRICE_FIELD_SIZE);
+						raf.seek(raf.getFilePointer() + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE
+								+ PRICE_FIELD_SIZE);
 						raf.writeInt(DELETED);
 					}
 					break;
@@ -84,7 +110,8 @@ public class FileManager {
 	}
 
 	public List<Car> findCarsByChassiOrModel(String text) {
-		if (text.isEmpty())	return new ArrayList<Car>();
+		if (text.isEmpty())
+			return new ArrayList<Car>();
 		openFile();
 		List<Car> cars = new ArrayList<Car>();
 		try {
@@ -166,6 +193,6 @@ public class FileManager {
 		} finally {
 			closeFile();
 		}
-		return cars;		
+		return cars;
 	}
 }
