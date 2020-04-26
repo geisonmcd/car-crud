@@ -2,7 +2,8 @@ package service;
 
 import java.util.List;
 
-import entities.Car;
+import entity.Car;
+import persistence.FileManager;
 
 public class CarService {
 	
@@ -30,6 +31,20 @@ public class CarService {
 
 	public List<Car> list(boolean showDeleted) {
 		return fileManager.list(showDeleted);
+	}
+
+	/**
+	 * Retorna as propriedades do arquivo em um array de tamanho 2 sendo:
+	 * [0] = tamanho do arquivo;
+	 * [1] = número de registros;
+	 * @return
+	 */
+	public long[] getProperties() {
+		return fileManager.getProperties();
+	}
+
+	public void clearFile() {
+		fileManager.clearFile();
 	}
 	
 }

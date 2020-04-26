@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-import entities.Car;
+import controller.FindPanelController;
+import entity.Car;
 import service.CarService;
 
 @SuppressWarnings("serial")
@@ -20,8 +20,9 @@ public class ButtonEditor extends DefaultCellEditor {
 	private String label;
 	private boolean isPushed;
 	private CarService carService;
+	private FindPanelController findPanelController;
 
-	public ButtonEditor(JCheckBox checkBox) {
+	public ButtonEditor(JCheckBox checkBox, FindPanelController findPanelController) {
 		super(checkBox);
 		button = new JButton();
 		button.setOpaque(true);
@@ -31,6 +32,7 @@ public class ButtonEditor extends DefaultCellEditor {
 			}
 		});
 		carService = new CarService();
+		this.findPanelController = findPanelController;
 	}
 
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
@@ -49,7 +51,6 @@ public class ButtonEditor extends DefaultCellEditor {
 
 	public Object getCellEditorValue() {
 		if (isPushed) {
-//			JOptionPane.showMessageDialog(button, label + ": Ouch!");
 			String chassi = label.split(" ")[1];
 			Car car = new Car();
 			car.setChassi(chassi);
@@ -67,5 +68,6 @@ public class ButtonEditor extends DefaultCellEditor {
 
 	protected void fireEditingStopped() {
 		super.fireEditingStopped();
+		findPanelController.findRegister(findPanelController.getFindPanel().txtFind.getText());
 	}
 }

@@ -1,6 +1,6 @@
 package main;
 
-import controllers.CarController;
+import controller.CarController;
 import service.CarService;
 
 public class CarMain {
