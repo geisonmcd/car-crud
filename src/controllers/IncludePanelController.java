@@ -1,7 +1,6 @@
 package controllers;
 
-import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
 import entities.Car;
 import views.IncludePanel;
@@ -21,8 +20,22 @@ public class IncludePanelController extends PanelController{
 		String model = includePanel.txtModelo.getText();
 		String price = includePanel.txtPreco.getText();
 		String year = includePanel.txtAno.getText();
-		Car newCar = new Car(chassi, brand, model, Integer.valueOf(year), Double.valueOf(price) );
-		carService.save(newCar);
+		Car newCar = new Car(chassi, brand, model, Integer.valueOf(year), Double.valueOf(price));
+		try {
+			carService.save(newCar);
+			JOptionPane.showMessageDialog(null, "Carro inserido com sucesso");
+			clearFields();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void clearFields() {
+		includePanel.txtChassi.setText("");
+		includePanel.txtMarca.setText("");
+		includePanel.txtModelo.setText("");
+		includePanel.txtPreco.setText("");
+		includePanel.txtAno.setText("");
 	}
 
 }

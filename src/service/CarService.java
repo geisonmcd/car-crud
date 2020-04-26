@@ -12,7 +12,7 @@ public class CarService {
 		fileManager = new FileManager();
 	}
 	
-	public void save(Car car) {
+	public void save(Car car) throws Exception {
 		fileManager.saveCar(car);
 	}
 	

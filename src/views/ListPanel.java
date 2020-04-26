@@ -1,40 +1,33 @@
 package views;
 
 import java.awt.Dimension;
+import java.awt.Font;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class ListPanel extends JPanel {
 	
 	private JTable table;
 	
-	public ListPanel(String[][] tableData, String[] tableColumns) {
+	public ListPanel(String[][] tableData, String[] tableColumns, String title) {
 		setLayout(null);
 		this.setSize(new Dimension(600, 600));
+		
+		JLabel lblIncludepanel = new JLabel(title, SwingConstants.CENTER);
+		lblIncludepanel.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblIncludepanel.setBounds(12, 12, 576, 32);
+		add(lblIncludepanel);
+		
 		table = new JTable(tableData, tableColumns);
-		table.setBounds(60, 94, 490, 297);
+		table.setBounds(12, 122, 563, 236);
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(60, 94, 490, 297);
+		scrollPane.setBounds(12, 139, 576, 398);
 		add(scrollPane);
 	}
 	
-//	public String[] getColumns() {
-//		return tableColumns;
-//	}
-//
-//	public void setColumns(String[] columns) {
-//		this.tableColumns = columns;
-//	}
-//
-//	public String[] getTableColumns() {
-//		return tableColumns;
-//	}
-//
-//	public void setTableColumns(String[] tableColumns) {
-//		this.tableColumns = tableColumns;
-//	}
-
 }

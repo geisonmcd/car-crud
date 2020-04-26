@@ -1,6 +1,5 @@
 package controllers;
 
-import java.awt.event.ActionEvent;
 import java.util.List;
 
 import javax.swing.JCheckBox;
@@ -11,7 +10,6 @@ import button.ButtonEditor;
 import button.ButtonRenderer;
 import entities.Car;
 import views.FindPanel;
-import views.ListPanel;
 
 public class FindPanelController extends PanelController{
 	
@@ -28,20 +26,15 @@ public class FindPanelController extends PanelController{
 		findPanel.tableModel.addTableModelListener(e2 -> tableChanged(e2));
 	}
 
-	void showFindPanel(ActionEvent e) {
-//		hideOtherPanels("findPanel");
-		findPanel.setVisible(true);
-	}
-	
 	void findRegister(String text) {
 		List<Car> cars = carService.find(text);
 		String[] tableColumns = {"Chassi", "Marca", "Modelo", "Ano", "Preco", "Delete"};
-		findPanel.tableModel.setDataVector(buildTableDataWithButton(cars), tableColumns);
+		findPanel.tableModel.setDataVector(buildTableData(cars), tableColumns);
 		findPanel.table.getColumn("Delete").setCellRenderer(new ButtonRenderer());
 	    findPanel.table.getColumn("Delete").setCellEditor(new ButtonEditor(new JCheckBox()));
 	}
 	
-	private String[][] buildTableDataWithButton(List<Car> cars) {
+	private String[][] buildTableData(List<Car> cars) {
 		String[][] data = new String[cars.size()][6];
 		int index = 0;
 		for (Car car : cars) {

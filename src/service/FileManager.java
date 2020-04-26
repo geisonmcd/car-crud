@@ -26,7 +26,7 @@ public class FileManager {
 	static final int NOT_DELETED = 0;
 	static final int DELETED = 1;
 
-	public void saveCar(Car car) {
+	public void saveCar(Car car) throws Exception {
 		openFile();
 		try {
 			this.raf.seek(this.raf.length());
@@ -38,6 +38,7 @@ public class FileManager {
 			this.raf.writeInt(NOT_DELETED);
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new Exception("Erro ao salvar o carro");
 		} finally {
 			closeFile();			
 		}

@@ -14,7 +14,7 @@ public class PhysicalListPanelController extends PanelController{
 	
 	public PhysicalListPanelController () {
 		List<Car> cars = carService.list(true);
-		physicalListPanel = new ListPanel(super.buildTableData(cars, NUMBER_OF_COLUMNS, true), COLUMNS);
+		physicalListPanel = new ListPanel(super.buildTableData(cars, NUMBER_OF_COLUMNS, true), COLUMNS, "LISTAR (FÍSICO)");
 	}
 	
 	void showPhysicalListPanel(ActionEvent e) {

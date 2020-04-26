@@ -15,7 +15,7 @@ import service.CarService;
 
 @SuppressWarnings("serial")
 public class ButtonEditor extends DefaultCellEditor {
-	
+
 	protected JButton button;
 	private String label;
 	private boolean isPushed;
@@ -49,13 +49,12 @@ public class ButtonEditor extends DefaultCellEditor {
 
 	public Object getCellEditorValue() {
 		if (isPushed) {
-			JOptionPane.showMessageDialog(button, label + ": Ouch!");
+//			JOptionPane.showMessageDialog(button, label + ": Ouch!");
 			String chassi = label.split(" ")[1];
 			Car car = new Car();
 			car.setChassi(chassi);
 			car.setDeleted(1);
 			carService.delete(car);
-			// System.out.println(label + ": Ouch!");
 		}
 		isPushed = false;
 		return new String(label);

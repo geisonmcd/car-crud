@@ -13,7 +13,7 @@ public class LogicalListPanelController extends PanelController{
 	
 	public LogicalListPanelController () {
 		List<Car> cars = carService.list(false);
-		listPanel = new ListPanel(super.buildTableData(cars, NUMBER_OF_COLUMNS, false), COLUMNS);
+		listPanel = new ListPanel(super.buildTableData(cars, NUMBER_OF_COLUMNS, false), COLUMNS, "LISTAR (LÓGICO)");
 	}
 	
 }
