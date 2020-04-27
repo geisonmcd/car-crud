@@ -12,15 +12,15 @@ public class IncludePanelController extends PanelController{
 	
 	public IncludePanelController() {
 		includePanel = new IncludePanel();
-		includePanel.btnIncluir.addActionListener(e2 -> insertCar());
+		includePanel.btnInclude.addActionListener(e2 -> insertCar());
 	}
 
 	private void insertCar() {
 		String chassi = includePanel.txtChassi.getText();
-		String brand = includePanel.txtMarca.getText();
-		String model = includePanel.txtModelo.getText();
-		Integer year = includePanel.txtAno.getText().equals("") ? 0 : Integer.valueOf(includePanel.txtAno.getText());
-		Double price = includePanel.txtPreco.getText().equals("") ? 0 : Double.valueOf(includePanel.txtPreco.getText());
+		String brand = includePanel.txtBrand.getText();
+		String model = includePanel.txtModel.getText();
+		Integer year = includePanel.txtYear.getText().equals("") ? 0 : Integer.valueOf(includePanel.txtYear.getText());
+		Double price = includePanel.txtPrice.getText().equals("") ? 0 : Double.valueOf(includePanel.txtPrice.getText());
 		if (chassi.equals("") || model.equals("")) {
 			JOptionPane.showMessageDialog(null, "Chassi e modelo são obrigatórios");
 			return;
@@ -39,10 +39,10 @@ public class IncludePanelController extends PanelController{
 	
 	private void clearFields() {
 		includePanel.txtChassi.setText("");
-		includePanel.txtMarca.setText("");
-		includePanel.txtModelo.setText("");
-		includePanel.txtPreco.setText("");
-		includePanel.txtAno.setText("");
+		includePanel.txtBrand.setText("");
+		includePanel.txtModel.setText("");
+		includePanel.txtPrice.setText("");
+		includePanel.txtYear.setText("");
 	}
 
 }
