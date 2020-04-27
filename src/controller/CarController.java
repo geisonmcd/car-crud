@@ -19,10 +19,13 @@ public class CarController {
 	LogicalListPanelController logicalListPanelController;
 	FindPanelController findPanelController;
 	PropertiesPanelController propertiesPanelController;
-    CardLayout cardLayout = new CardLayout();
-    JPanel parentPanel;
+	CardLayout cardLayout = new CardLayout();
+	JPanel parentPanel;
 
 	public CarController() {
+	}
+
+	public void execute() {
 		mainWindow = new MainWindow();
 		includePanelController = new IncludePanelController();
 		findPanelController = new FindPanelController();
@@ -37,27 +40,27 @@ public class CarController {
 		mainWindow.logicalListMenuItem.addActionListener(e -> showLogicalListPanel());
 		mainWindow.propertiesMenuItem.addActionListener(e -> showPropertiesPanel());
 	}
-	
+
 	private void showIncludePanel() {
 		cardLayout.show(parentPanel, INCLUDE_PANEL);
 	}
-	
+
 	private void showFindPanel() {
 		cardLayout.show(parentPanel, FIND_PANEL);
 	}
-	
+
 	private void showPhysicalListPanel() {
 		physicalListPanelController = new PhysicalListPanelController();
 		parentPanel.add(physicalListPanelController.physicalListPanel, PHYSICAL_LIST_PANEL);
 		cardLayout.show(parentPanel, PHYSICAL_LIST_PANEL);
 	}
-	
+
 	private void showLogicalListPanel() {
 		logicalListPanelController = new LogicalListPanelController();
 		parentPanel.add(logicalListPanelController.listPanel, LOGICAL_LIST_PANEL);
 		cardLayout.show(parentPanel, LOGICAL_LIST_PANEL);
 	}
-	
+
 	private void showPropertiesPanel() {
 		propertiesPanelController = new PropertiesPanelController();
 		parentPanel.add(propertiesPanelController.propertiesPanel, PROPERTIES_PANEL);

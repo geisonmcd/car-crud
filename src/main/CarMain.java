@@ -6,7 +6,8 @@ import service.CarService;
 public class CarMain {
 
 	public static void main(String[] args) {
-		CarController mainWindow = new CarController();
+		CarController carController = new CarController();
+		carController.execute();
 	}
 
 }

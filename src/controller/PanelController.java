@@ -5,6 +5,11 @@ import java.util.List;
 import entity.Car;
 import service.CarService;
 
+/**
+ * Classe pai dos PanelController contendo os métodos e atributos comuns a mais de um PanelController
+ * @author geison
+ *
+ */
 public class PanelController {
 	
 	CarService carService;

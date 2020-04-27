@@ -27,7 +27,7 @@ public class FindPanelController extends PanelController{
 	}
 
 	public void findRegister(String text) {
-		List<Car> cars = carService.find(text);
+		List<Car> cars = carService.findByChassiOrModel(text);
 		String[] tableColumns = {"Chassi", "Marca", "Modelo", "Ano", "Preco", "Delete"};
 		findPanel.tableModel.setDataVector(buildTableData(cars), tableColumns);
 		findPanel.table.getColumn("Delete").setCellRenderer(new ButtonRenderer());

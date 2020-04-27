@@ -5,6 +5,10 @@ import java.util.List;
 import entity.Car;
 import persistence.FileManager;
 
+/**
+ * Classe que integra a conversa do front end com o backend
+ *
+ */
 public class CarService {
 	
 	FileManager fileManager;
@@ -25,7 +29,7 @@ public class CarService {
 		fileManager.deleteCar(car);
 	}
 	
-	public List<Car> find(String text) {
+	public List<Car> findByChassiOrModel(String text) {
 		return fileManager.findCarsByChassiOrModel(text);
 	}
 

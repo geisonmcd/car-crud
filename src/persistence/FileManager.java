@@ -10,6 +10,10 @@ import java.util.List;
 import entity.Car;
 import exception.CarAlreadyExistsException;
 
+/**
+ * Classe que implementa as operações de leitura e escrita no arquivo
+ * @author geison
+ */
 public class FileManager {
 
 	RandomAccessFile raf;
@@ -20,8 +24,7 @@ public class FileManager {
 	static final int YEAR_FIELD_SIZE = 4;
 	static final int PRICE_FIELD_SIZE = 8;
 	static final int DELETED_FIELD_SIZE = 4;
-	static final int REGISTER_SIZE = CHASSI_FIELD_SIZE + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE
-			+ PRICE_FIELD_SIZE + DELETED_FIELD_SIZE;
+	static final int REGISTER_SIZE = CHASSI_FIELD_SIZE + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE + PRICE_FIELD_SIZE + DELETED_FIELD_SIZE;
 	static final int CHASSI_STRING_SIZE = CHASSI_FIELD_SIZE / 2;
 	static final int BRAND_STRING_SIZE = BRAND_FIELD_SIZE / 2;
 	static final int MODEL_STRING_SIZE = MODEL_FIELD_SIZE / 2;
@@ -113,6 +116,11 @@ public class FileManager {
 		}
 	}
 
+	/**
+	 * Retornar lista de carros em que o chassi ou modelo dão match com a string
+	 * @param text
+	 * @return
+	 */
 	public List<Car> findCarsByChassiOrModel(String text) {
 		if (text.isEmpty())	return new ArrayList<Car>();
 		openFile();
@@ -175,6 +183,11 @@ public class FileManager {
 		}
 	}
 
+	/**
+	 * Retorna todos os carros salvos em arquivo
+	 * @param showDeleted Se inclui os deletados ou não
+	 * @return
+	 */
 	public List<Car> list(boolean showDeleted) {
 		openFile();
 		List<Car> cars = new ArrayList<Car>();
