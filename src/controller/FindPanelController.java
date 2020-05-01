@@ -30,7 +30,8 @@ public class FindPanelController extends PanelController{
 		List<Car> cars = carService.findByChassiOrModel(text);
 		String[] tableColumns = {"Chassi", "Marca", "Modelo", "Ano", "Preco", "Delete"};
 		findPanel.tableModel.setDataVector(buildTableData(cars), tableColumns);
-		findPanel.table.getColumn("Delete").setCellRenderer(new ButtonRenderer());
+		ButtonRenderer buttonRenderer = new ButtonRenderer();
+		findPanel.table.getColumn("Delete").setCellRenderer(buttonRenderer);
 	    findPanel.table.getColumn("Delete").setCellEditor(new ButtonEditor(new JCheckBox(), this));
 	}
 	
