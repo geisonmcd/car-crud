@@ -8,6 +8,8 @@ public class Car {
 	private Integer year;
 	private Double price;
 	private Integer deleted;
+	public static final int NOT_DELETED = 0;
+	public static final int DELETED = 1;
 	
 	public Car() {}
 

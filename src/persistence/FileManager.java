@@ -24,12 +24,13 @@ public class FileManager {
 	static final int YEAR_FIELD_SIZE = 4;
 	static final int PRICE_FIELD_SIZE = 8;
 	static final int DELETED_FIELD_SIZE = 4;
-	static final int REGISTER_SIZE = CHASSI_FIELD_SIZE + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE + PRICE_FIELD_SIZE + DELETED_FIELD_SIZE;
+	static final int REGISTER_SIZE = CHASSI_FIELD_SIZE + BRAND_FIELD_SIZE + 
+										MODEL_FIELD_SIZE + YEAR_FIELD_SIZE + 
+										PRICE_FIELD_SIZE + DELETED_FIELD_SIZE;
 	static final int CHASSI_STRING_SIZE = CHASSI_FIELD_SIZE / 2;
 	static final int BRAND_STRING_SIZE = BRAND_FIELD_SIZE / 2;
 	static final int MODEL_STRING_SIZE = MODEL_FIELD_SIZE / 2;
-	static final int NOT_DELETED = 0;
-	static final int DELETED = 1;
+
 
 	public void saveCar(Car car) throws Exception {
 		openFile();
@@ -44,7 +45,7 @@ public class FileManager {
 			this.writeString(car.getModel(), MODEL_STRING_SIZE);
 			this.raf.writeInt(car.getYear() == null ? 0 : car.getYear());
 			this.raf.writeDouble(car.getPrice() == null ? 0 : car.getPrice());				
-			this.raf.writeInt(NOT_DELETED);
+			this.raf.writeInt(Car.NOT_DELETED);
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new Exception("Erro ao salvar o carro");
@@ -77,7 +78,7 @@ public class FileManager {
 	}
 
 	public void deleteCar(Car car) {
-		car.setDeleted(DELETED);
+		car.setDeleted(Car.DELETED);
 		updateCar(car);
 	}
 
@@ -102,7 +103,7 @@ public class FileManager {
 					} else if (car.getDeleted() != null) {
 						raf.seek(raf.getFilePointer() + BRAND_FIELD_SIZE + MODEL_FIELD_SIZE + YEAR_FIELD_SIZE
 								+ PRICE_FIELD_SIZE);
-						raf.writeInt(DELETED);
+						raf.writeInt(Car.DELETED);
 					}
 					break;
 				}
@@ -134,7 +135,7 @@ public class FileManager {
 				int year = raf.readInt();
 				double price = raf.readDouble();
 				int deleted = raf.readInt();
-				if (deleted == NOT_DELETED && (chassi.contains(text) || model.contains(text))) {
+				if (deleted == Car.NOT_DELETED && (chassi.contains(text) || model.contains(text))) {
 					cars.add(new Car(chassi, brand, model, year, price, deleted));
 				}
 			}
@@ -200,7 +201,7 @@ public class FileManager {
 				int year = raf.readInt();
 				double price = raf.readDouble();
 				int deleted = raf.readInt();
-				if (deleted == NOT_DELETED || (deleted == DELETED && showDeleted)) {
+				if (deleted == Car.NOT_DELETED || (deleted == Car.DELETED && showDeleted)) {
 					cars.add(new Car(chassi, brand, model, year, price, deleted));
 				}
 			}
