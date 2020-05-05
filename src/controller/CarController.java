@@ -19,8 +19,6 @@ public class CarController {
 	LogicalListPanelController logicalListPanelController;
 	FindPanelController findPanelController;
 	PropertiesPanelController propertiesPanelController;
-	CardLayout cardLayout = new CardLayout();
-	JPanel parentPanel;
 
 	public CarController() {
 	}
@@ -29,11 +27,8 @@ public class CarController {
 		mainWindow = new MainWindow();
 		includePanelController = new IncludePanelController();
 		findPanelController = new FindPanelController();
-		parentPanel = new JPanel();
-		mainWindow.getContentPane().add(parentPanel);
-		parentPanel.setLayout(cardLayout);
-		parentPanel.add(includePanelController.includePanel, INCLUDE_PANEL);
-		parentPanel.add(findPanelController.findPanel, FIND_PANEL);
+		mainWindow.parentPanel.add(includePanelController.includePanel, INCLUDE_PANEL);
+		mainWindow.parentPanel.add(findPanelController.findPanel, FIND_PANEL);
 		mainWindow.includeMenuItem.addActionListener(e -> showIncludePanel());
 		mainWindow.findMenuItem.addActionListener(e -> showFindPanel());
 		mainWindow.phyisicalListMenuItem.addActionListener(e -> showPhysicalListPanel());
@@ -42,29 +37,29 @@ public class CarController {
 	}
 
 	private void showIncludePanel() {
-		cardLayout.show(parentPanel, INCLUDE_PANEL);
+		mainWindow.cardLayout.show(mainWindow.parentPanel, INCLUDE_PANEL);
 	}
 
 	private void showFindPanel() {
-		cardLayout.show(parentPanel, FIND_PANEL);
+		mainWindow.cardLayout.show(mainWindow.parentPanel, FIND_PANEL);
 	}
 
 	private void showPhysicalListPanel() {
 		physicalListPanelController = new PhysicalListPanelController();
-		parentPanel.add(physicalListPanelController.physicalListPanel, PHYSICAL_LIST_PANEL);
-		cardLayout.show(parentPanel, PHYSICAL_LIST_PANEL);
+		mainWindow.parentPanel.add(physicalListPanelController.physicalListPanel, PHYSICAL_LIST_PANEL);
+		mainWindow.cardLayout.show(mainWindow.parentPanel, PHYSICAL_LIST_PANEL);
 	}
 
 	private void showLogicalListPanel() {
 		logicalListPanelController = new LogicalListPanelController();
-		parentPanel.add(logicalListPanelController.listPanel, LOGICAL_LIST_PANEL);
-		cardLayout.show(parentPanel, LOGICAL_LIST_PANEL);
+		mainWindow.parentPanel.add(logicalListPanelController.listPanel, LOGICAL_LIST_PANEL);
+		mainWindow.cardLayout.show(mainWindow.parentPanel, LOGICAL_LIST_PANEL);
 	}
 
 	private void showPropertiesPanel() {
 		propertiesPanelController = new PropertiesPanelController();
-		parentPanel.add(propertiesPanelController.propertiesPanel, PROPERTIES_PANEL);
-		cardLayout.show(parentPanel, PROPERTIES_PANEL);
+		mainWindow.parentPanel.add(propertiesPanelController.propertiesPanel, PROPERTIES_PANEL);
+		mainWindow.cardLayout.show(mainWindow.parentPanel, PROPERTIES_PANEL);
 	}
 
 }

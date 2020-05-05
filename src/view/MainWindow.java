@@ -1,12 +1,14 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
@@ -19,6 +21,8 @@ public class MainWindow extends JFrame {
 	public JMenuItem findMenuItem;
 	public JMenu editMenu;
 	public JMenuItem propertiesMenuItem;
+	public JPanel parentPanel;
+	public CardLayout cardLayout;
 
 	public MainWindow() {
 		super("Carros");
@@ -43,5 +47,9 @@ public class MainWindow extends JFrame {
 		carMenu.add(logicalListMenuItem);
 		carMenu.add(findMenuItem);
 		editMenu.add(propertiesMenuItem);
+		cardLayout = new CardLayout();
+		parentPanel = new JPanel();
+		getContentPane().add(parentPanel);
+		parentPanel.setLayout(cardLayout);
 	}
 }
