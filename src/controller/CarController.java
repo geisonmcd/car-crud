@@ -1,9 +1,5 @@
 package controller;
 
-import java.awt.CardLayout;
-
-import javax.swing.JPanel;
-
 import view.MainWindow;
 
 public class CarController {
