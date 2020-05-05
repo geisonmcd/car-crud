@@ -43,6 +43,8 @@ public class IncludePanelController extends PanelController{
 		includePanel.txtModel.setText("");
 		includePanel.txtPrice.setText("");
 		includePanel.txtYear.setText("");
+		includePanel.btnInclude.setEnabled(false);
+
 	}
 
 }
