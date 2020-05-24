@@ -27,6 +27,7 @@ public class CarController {
 		mainWindow.findMenuItem.addActionListener(e -> showFindPanel());
 		mainWindow.phyisicalListMenuItem.addActionListener(e -> showPhysicalListPanel());
 		mainWindow.propertiesMenuItem.addActionListener(e -> showPropertiesPanel());
+		mainWindow.sairMenuItem.addActionListener(e -> System.exit(0));
 	}
 
 	private void showIncludePanel() {

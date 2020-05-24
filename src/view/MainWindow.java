@@ -20,6 +20,7 @@ public class MainWindow extends JFrame {
 	public JMenuItem findMenuItem;
 	public JMenu editMenu;
 	public JMenuItem propertiesMenuItem;
+	public JMenuItem sairMenuItem;
 	public JPanel parentPanel;
 	public CardLayout cardLayout;
 
@@ -37,6 +38,7 @@ public class MainWindow extends JFrame {
 		phyisicalListMenuItem = new JMenuItem("Listar");
 		findMenuItem = new JMenuItem("Consultar");
 		propertiesMenuItem = new JMenuItem("Propriedades");
+		sairMenuItem = new JMenuItem("Sair");
 		getContentPane().add(menuBar, BorderLayout.NORTH);
 		menuBar.add(carMenu);
 		menuBar.add(editMenu);
@@ -44,6 +46,7 @@ public class MainWindow extends JFrame {
 		carMenu.add(phyisicalListMenuItem);
 		carMenu.add(findMenuItem);
 		editMenu.add(propertiesMenuItem);
+		editMenu.add(sairMenuItem);
 		cardLayout = new CardLayout();
 		parentPanel = new JPanel();
 		getContentPane().add(parentPanel);
