@@ -34,7 +34,7 @@ public class MainWindow extends JFrame {
 		carMenu = new JMenu("Carros");
 		editMenu = new JMenu("Editar");
 		includeMenuItem = new JMenuItem("Incluir");
-		phyisicalListMenuItem = new JMenuItem("Listar (Físico)");
+		phyisicalListMenuItem = new JMenuItem("Listar");
 		findMenuItem = new JMenuItem("Consultar");
 		propertiesMenuItem = new JMenuItem("Propriedades");
 		getContentPane().add(menuBar, BorderLayout.NORTH);

@@ -8,7 +8,7 @@ public interface CarDAO {
 	
 	public boolean createTableIfNotExists();
 
-	public boolean saveCar(Car car);
+	public boolean saveCar(Car car) throws Exception;
 
 	public boolean updateCar(Car car);
 

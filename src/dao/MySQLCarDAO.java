@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.Car;
+import exception.CarAlreadyExistsException;
 
 public class MySQLCarDAO implements CarDAO {
 
@@ -37,7 +38,7 @@ public class MySQLCarDAO implements CarDAO {
 	}
 
 	@Override
-	public boolean saveCar(Car car) {
+	public boolean saveCar(Car car) throws Exception {
 		try {
 			Class.forName(dbdriver);
 			Connection con = DriverManager.getConnection(dburl, dbusuario, dbsenha);
@@ -56,7 +57,7 @@ public class MySQLCarDAO implements CarDAO {
 			return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			throw new CarAlreadyExistsException();
 		}
 	}
 
