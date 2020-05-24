@@ -2,8 +2,10 @@ package service;
 
 import java.util.List;
 
+import dao.CarDAO;
 import entity.Car;
-import persistence.FileManager;
+import factory.DAOFactory;
+import factory.Factory;
 
 /**
  * Classe que integra a conversa do front end com o backend
@@ -11,47 +13,44 @@ import persistence.FileManager;
  */
 public class CarService {
 	
-	FileManager fileManager;
+	DAOFactory factory;
+	CarDAO cardao;
 	
 	public CarService() {
-		fileManager = new FileManager();
+		factory = DAOFactory.getDAOFactory(Factory.FABRICA);
+		cardao = factory.getCarDAO();
+	}
+	
+	public void createTableIfNotExists() {
+		cardao.createTableIfNotExists();
 	}
 	
 	public void save(Car car) throws Exception {
-		fileManager.saveCar(car);
+		cardao.saveCar(car);
 	}
 	
 	public void update(Car car) {
-		fileManager.updateCar(car);
+		cardao.updateCar(car);
 	}
 	
 	public void delete(Car car) {
-		fileManager.deleteCar(car);
+		cardao.deleteCar(car);
 	}
 	
 	public List<Car> findByChassiOrModel(String text) {
-		return fileManager.findCarsByChassiOrModel(text);
+		return cardao.findByChassiOrModel(text);
 	}
 
 	public List<Car> list(boolean showDeleted) {
-		return fileManager.list(showDeleted);
+		return cardao.list();
 	}
 
-	/**
-	 * Retorna as propriedades do arquivo em um array de tamanho 2 sendo:
-	 * [0] = tamanho do arquivo;
-	 * [1] = número de registros;
-	 * @return
-	 */
-	public long[] getProperties() {
-		return fileManager.getProperties();
+	public int getRegisterCount() {
+		return cardao.getRegisterCount();
 	}
 
-	/**
-	 * Exclui/limpa o arquivo
-	 */
 	public void clearFile() {
-		fileManager.deleteFile();
+		cardao.clearFile();
 	}
 	
 }

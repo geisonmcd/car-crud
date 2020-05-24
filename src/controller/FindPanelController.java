@@ -57,7 +57,11 @@ public class FindPanelController extends PanelController{
 			return;
 		TableModel model = (TableModel) e.getSource();
 		String chassi = (String) model.getValueAt(row, 0);
-		Car car = new Car(chassi);
+		String brand = (String) model.getValueAt(row, 1);
+		String carModel = (String) model.getValueAt(row, 2);
+		int year = Integer.valueOf(((String) model.getValueAt(row, 3)));
+		double price = Double.valueOf((String) model.getValueAt(row, 4));
+		Car car = new Car(chassi, brand, carModel, year, price);
 		Object data = model.getValueAt(row, column);
 		switch (column) {
 		case CHASSI_COLUMN_POSITION:

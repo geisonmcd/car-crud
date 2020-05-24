@@ -17,7 +17,6 @@ public class MainWindow extends JFrame {
 	public JMenu carMenu;
 	public JMenuItem includeMenuItem;
 	public JMenuItem phyisicalListMenuItem;
-	public JMenuItem logicalListMenuItem;
 	public JMenuItem findMenuItem;
 	public JMenu editMenu;
 	public JMenuItem propertiesMenuItem;
@@ -36,7 +35,6 @@ public class MainWindow extends JFrame {
 		editMenu = new JMenu("Editar");
 		includeMenuItem = new JMenuItem("Incluir");
 		phyisicalListMenuItem = new JMenuItem("Listar (Físico)");
-		logicalListMenuItem = new JMenuItem("Listar (Lógico)");
 		findMenuItem = new JMenuItem("Consultar");
 		propertiesMenuItem = new JMenuItem("Propriedades");
 		getContentPane().add(menuBar, BorderLayout.NORTH);
@@ -44,7 +42,6 @@ public class MainWindow extends JFrame {
 		menuBar.add(editMenu);
 		carMenu.add(includeMenuItem);
 		carMenu.add(phyisicalListMenuItem);
-		carMenu.add(logicalListMenuItem);
 		carMenu.add(findMenuItem);
 		editMenu.add(propertiesMenuItem);
 		cardLayout = new CardLayout();
