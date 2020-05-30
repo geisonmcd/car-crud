@@ -27,7 +27,6 @@ public class PanelController {
 			data[index][2] = car.getModel();
 			data[index][3] = car.getYearAsString();
 			data[index][4] = car.getPriceAsString();
-			if (showDeleted) data[index][5] = car.getDeletedAsString();
 			index++;
 		}
 		return data;

@@ -54,7 +54,6 @@ public class ButtonEditor extends DefaultCellEditor {
 			String chassi = label.split(" ")[1];
 			Car car = new Car();
 			car.setChassi(chassi);
-			car.setDeleted(Car.DELETED);
 			carService.delete(car);
 		}
 		isPushed = false;
